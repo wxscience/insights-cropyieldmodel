@@ -18,9 +18,11 @@ constructed_analog_path: 's3://insights-constructedanalogmodel/predictions/linea
 tp_climo: 's3://insights-soyyieldmodel/external_data/tp_climo_1979thru2022_global.zarr'
 
 training:
+  # change these for new crops:
   wasde_history: 'wasde_yield.csv'
   truth_file:
     usa: 'usa_crop_1979thru2022.csv'
+  # stop changing for new crops
   crop_health_truth_file:
     usa: 'usa_yield_production.csv'
   terraclimate:

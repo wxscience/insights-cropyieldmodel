@@ -59,12 +59,18 @@ _logger = logging.getLogger("insights-crop-model.main")
     type=str,
 )
 @click.option(
+    "-crop_type",
+    default="corn",
+    help="the name of the crop: e.g. corn, soy, etc.",
+    type=str,
+)
+@click.option(
     "-mp/-no-mp",
     default=False,
     help="use true for mp when training and running",
     type=bool,
 )
-def process_arguments(run_mode, country, run_date, state, mp):
+def process_arguments(run_mode, country, run_date, state, crop_type, mp):
     if run_mode not in ["train", "run", "assemble"]:
         _logger.warning(f"Mode is invalid. Defaulting to run. Given: {run_mode}")
         run_mode = "run"
@@ -80,7 +86,8 @@ def process_arguments(run_mode, country, run_date, state, mp):
     _logger.info(f"multiprocessing: {mp}")
 
     # load in config settings
-    config = sf.load_settings("config.yml")
+    # each crop can have its own config file: crop_config.yml
+    config = sf.load_settings(f"{crop_type}_config.yml")
 
     if state == "all":
         state_list = config["states"][country]

@@ -525,6 +525,7 @@ def load_crop_truth_usda(config, state, month):
 
 
 def load_crop_truth(config, country, state, anomaly=False):
+    # This needs to be changed for each country and each crop
     if country == "usa":
         truth_file = f'{config["bucket_in_path"]}external_data/{config["training"]["truth_file"][country]}'
 

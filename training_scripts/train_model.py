@@ -147,7 +147,10 @@ def main(config, country, state):
     ty2 = int(config["training"]["train_years"][country][1])
 
     # Load in the truth file
+    # TWEAK THIS FOR NEW CROPS:
+    # output of this is just a df with a yield and an acreage column, year is the index
     crop_truth_df = sf.load_crop_truth(config, country, state).loc[:2021]
+
     y_xv = crop_truth_df.copy()["yield"]
 
     # create feature for below; clip for training period
