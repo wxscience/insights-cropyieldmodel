@@ -1,0 +1,15 @@
+**/__pycache__/
+*.py[cod]
+temp_files/
+.vscode/
+*.nc
+*.grib2
+*.pdf
+trained_models/
+processed_data/
+*~
+aws_configure
+.devcontainer/
+push*sh
+*.md
+shapes/*

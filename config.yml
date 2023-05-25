@@ -1,0 +1,53 @@
+---
+# MUST INCLUDE TRAILING SLASH ON ALL S3 DIRECTORIES
+# some soy references are ok
+ver: 'usa_v0'
+prod_status: 'test'
+bucket_in_path: 's3://insights-cropyieldmodel/'
+bucket_out_path: 's3://insights-cropyieldmodel/output/'
+reports_path: 's3://insights-cropyieldmodel/crop_reports/'
+gefs_bucket: 's3://insights-gfs-processing/gefs/'
+
+data-paths:
+  enso: 's3://dl-appsci-production-mf/ingest/teleconnection/sst/observed_values/sst34_monthly.pickle'
+  mjo: 's3://dl-appsci-production-mf/ingest/teleconnection/mjo/observed_values/mjo_monthly.pickle'
+
+# this is for reading in the latest WASDE data, NOT for training
+wasde_path: 'https://www.usda.gov/oce/commodity/wasde'
+constructed_analog_path: 's3://insights-constructedanalogmodel/predictions/linear_reg/'
+tp_climo: 's3://insights-soyyieldmodel/external_data/tp_climo_1979thru2022_global.zarr'
+
+training:
+  wasde_history: 'wasde_yield.csv'
+  truth_file:
+    usa: 'usa_crop_1979thru2022.csv'
+  crop_health_truth_file:
+    usa: 'usa_yield_production.csv'
+  terraclimate:
+    nc_path: 's3://insights-cropyieldmodel/terraclimate/'
+    pickle_path: 's3://insights-cropyieldmodel/processed_data/'
+  tp_data:
+    nc_archive: 's3://insights-soyyieldmodel/external_data/tp-data/monthly_values_1979thru2022.zarr'
+  constructed_analog:
+    usa: 's3://gfs-ag-models-dev/constructed_analog/predictions_ca_usa_1990thru2021.zarr'
+  ndvi_features:
+    usa: 's3://insights-soyyieldmodel/external_data/crop_health_data/'
+  train_years:
+    usa: ['1991', '2019']
+
+realtime:
+  gdas_path: 's3://insights-gfs-processing/reanalysis/'
+  cfs_path: 'https://www.ncei.noaa.gov/thredds/dodsC/model-cfs_v2_anl_ts/'
+  ca_path: 's3://insights-constructedanalogmodel/predictions/linear_reg/'
+  gefs_path: 's3://insights-gfs-processing/gefs/'
+  
+states:
+  usa: ['alabama', 'arizona', 'arkansas', 'california', 'colorado', 'delaware', 'florida', 'georgia', 'idaho','illinois', 'indiana', 'iowa', 'kansas', 'kentucky', 'louisiana', 'maryland', 'michigan', 'minnesota','mississippi', 'missouri', 'montana', 'nebraska', 'new-jersey', 'new-mexico', 'new-york','north-carolina', 'north-dakota', 'ohio', 'oklahoma', 'oregon','pennsylvania', 'south-carolina', 'south-dakota','tennessee', 'texas', 'utah', 'virginia', 'washington','west-virginia', 'wisconsin', 'wyoming']
+
+crop-states:
+  usa: ['alabama', 'arizona', 'arkansas', 'california', 'colorado', 'delaware', 'florida', 'georgia', 'idaho','illinois', 'indiana', 'iowa', 'kansas', 'kentucky', 'louisiana', 'maryland', 'michigan', 'minnesota','mississippi', 'missouri', 'montana', 'nebraska', 'new-jersey', 'new-mexico', 'new-york','north-carolina', 'north-dakota', 'ohio', 'oklahoma', 'oregon','pennsylvania', 'south-carolina', 'south-dakota','tennessee', 'texas', 'utah', 'virginia', 'washington','west-virginia', 'wisconsin', 'wyoming']
+
+growing-season:
+  usa: [4, 5, 6, 7, 8, 9, 10, 11]
+
+...
